@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hoseo-bus-app/static/css/main.611874ca.css",
-    "main.js": "/hoseo-bus-app/static/js/main.93daacbe.js",
+    "main.js": "/hoseo-bus-app/static/js/main.ff43031d.js",
     "static/js/453.8384a7e5.chunk.js": "/hoseo-bus-app/static/js/453.8384a7e5.chunk.js",
     "index.html": "/hoseo-bus-app/index.html",
     "main.611874ca.css.map": "/hoseo-bus-app/static/css/main.611874ca.css.map",
-    "main.93daacbe.js.map": "/hoseo-bus-app/static/js/main.93daacbe.js.map",
+    "main.ff43031d.js.map": "/hoseo-bus-app/static/js/main.ff43031d.js.map",
     "453.8384a7e5.chunk.js.map": "/hoseo-bus-app/static/js/453.8384a7e5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.611874ca.css",
-    "static/js/main.93daacbe.js"
+    "static/js/main.ff43031d.js"
   ]
 }
