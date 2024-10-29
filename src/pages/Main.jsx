@@ -9,8 +9,7 @@ const MainContainer = styled.div`
 const Main = () => {
   return (
     <MainContainer>
-      <h1>안녕하세요</h1>
-      {/* <Header></Header> */}
+      <Header />
     </MainContainer>
   );
 };
