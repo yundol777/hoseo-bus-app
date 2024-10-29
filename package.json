@@ -22,7 +22,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "http://hoseo-bus-app.github.io/pages/",
+  "homepage": "https://yundol777.github.io/hoseo-bus-app/",
   "eslintConfig": {
     "extends": [
       "react-app",
