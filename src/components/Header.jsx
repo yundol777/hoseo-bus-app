@@ -3,10 +3,12 @@ import logo from "../assets/images/top_logo.png";
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 150px;
-  background-color: #a1131f;
+  height: 22vh;
+  background-color: #a51622;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
 
-  padding: 30px 40px;
+  padding: 26px 24px;
 `;
 
 const HeaderLogo = styled.div`
@@ -17,13 +19,14 @@ const HeaderLogo = styled.div`
   gap: 20px;
 
   > img {
-    width: 110px;
+    width: 116px;
+    height: 67px;
   }
 
   > p {
-    font-size: 0.6rem;
+    font-size: 12px;
     font-family: "Noto Sans KR", sans-serif;
-    font-weight: 700;
+    font-weight: 500;
     white-space: nowrap;
   }
 `;
