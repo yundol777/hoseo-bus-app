@@ -1,11 +1,16 @@
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { timeState } from "../recoil/timeState";
+import { comingBuses } from "../assets/data/busData";
 
 const BoardContainer = styled.div`
   box-sizing: border-box;
+  height: 23vh;
   margin: 30px 24px;
 `;
 
-const Date = styled.div`
+const DateContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -27,6 +32,7 @@ const BoardMain = styled.div`
   background-color: white;
   position: relative;
   margin: 8px 0;
+  height: 100%;
   min-height: 160px;
   border-radius: 10px;
   border: 2px solid #cccccc;
@@ -42,7 +48,7 @@ const BusPrint = styled.div`
   padding: 24px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 32px;
 
   .bus {
@@ -52,11 +58,11 @@ const BusPrint = styled.div`
 
     > .name {
     }
-
-    > .leftTime {
-      color: #a51622;
-    }
   }
+`;
+
+const LeftTime = styled.p`
+  color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
 `;
 
 const ShuttleBusPrint = styled.div`
@@ -93,37 +99,82 @@ const Highlight = styled.div`
 `;
 
 const Board = () => {
+  const [time, setTime] = useState(new Date());
+  const [minute, setMinute] = useRecoilState(timeState);
+  const [busData, setBusData] = useState([]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const newTime = new Date();
+      setTime(newTime); // 1초마다 현재 시간을 갱신
+
+      // 분 값이 변경되었을 때만 minuteState 업데이트
+      const currentMinute = newTime.getMinutes();
+      if (currentMinute !== minute) {
+        setMinute(currentMinute);
+      }
+    }, 1000);
+
+    // 리턴을 사용해 타이머를 정리
+    return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 실행
+  }, []);
+
+  useEffect(() => {
+    // 주말 여부 판단
+    const isWeekend = time.getDay() === 0 || time.getDay() === 6;
+
+    // 30분 이내 도착 버스 정보를 갱신
+    const buses = comingBuses(isWeekend, time);
+    setBusData(buses);
+  }, [minute, time]); // 분 또는 time이 변경될 때마다 실행
+
   return (
     <BoardContainer>
-      <Date>
-        <p className="date">9월 27일 금요일</p>
-        <p className="time">오후 1 : 30 : 25</p>
-      </Date>
+      <DateContainer>
+        <p className="date">
+          {`${time.getMonth() + 1}월 ${time.getDate()}일 ${
+            ["일", "월", "화", "수", "목", "금", "토"][time.getDay()]
+          }요일`}
+        </p>
+        <p className="time">
+          {`${time.getHours()}시 ${String(time.getMinutes()).padStart(
+            2,
+            "0"
+          )}분 ${String(time.getSeconds()).padStart(2, "0")}초`}
+        </p>
+      </DateContainer>
       <BoardMain>
         <BusPrint>
           <ShuttleBusPrint>
-            <div className="bus">
-              <p className="name">셔틀버스</p>
-              <p className="leftTime">2분</p>
-            </div>
-            <div className="bus">
-              <p className="name">셔틀버스</p>
-              <p className="leftTime">15분</p>
-            </div>
+            {busData
+              .filter((bus) => bus.bus_name === "셔틀버스")
+              .map((bus, index) => (
+                <div key={index} className="bus">
+                  <p className="name">{bus.bus_name}</p>
+                  <LeftTime timeLeft={bus.timeLeft}>{bus.timeLeft}분</LeftTime>
+                </div>
+              ))}
           </ShuttleBusPrint>
           <CityBusPrint>
-            <div className="bus">
-              <p className="name">1000번</p>
-              <p className="leftTime">4분</p>
-            </div>
-            <div className="bus">
-              <p className="name">순환5번</p>
-              <p className="leftTime">18분</p>
-            </div>
+            {busData
+              .filter((bus) => bus.bus_name !== "셔틀버스")
+              .map((bus, index) => (
+                <div key={index} className="bus">
+                  <p className="name">{bus.bus_name}</p>
+                  <LeftTime timeLeft={bus.timeLeft}>{bus.timeLeft}분</LeftTime>
+                </div>
+              ))}
           </CityBusPrint>
         </BusPrint>
         <Highlight>
-          <p>곧도착 : 셔틀버스</p>
+          <p>
+            곧도착 :{" "}
+            {busData
+              .filter((bus) => bus.timeLeft <= 2) // 남은 시간이 2분 이하인 버스 필터링
+              .map((bus) => bus.bus_name) // bus_name만 추출
+              .join(", ")}{" "}
+            {/* 쉼표로 구분된 문자열로 표시 */}
+          </p>
         </Highlight>
       </BoardMain>
     </BoardContainer>

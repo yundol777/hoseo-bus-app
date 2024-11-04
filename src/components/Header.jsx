@@ -4,6 +4,7 @@ import logo from "../assets/images/top_logo.png";
 const HeaderContainer = styled.div`
   width: 100%;
   height: 22vh;
+  min-height: 120px;
   background-color: #a51622;
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -30,6 +31,7 @@ const HeaderLogo = styled.div`
     white-space: nowrap;
   }
 `;
+
 
 const Header = () => {
   return (
