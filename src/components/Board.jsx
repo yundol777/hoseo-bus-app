@@ -6,7 +6,6 @@ import { comingBuses } from "../assets/data/busData";
 
 const BoardContainer = styled.div`
   box-sizing: border-box;
-  height: 23vh;
   margin: 30px 24px;
 `;
 
@@ -31,7 +30,7 @@ const DateContainer = styled.div`
 const BoardMain = styled.div`
   background-color: white;
   position: relative;
-  margin: 8px 0;
+  margin-top: 8px;
   height: 100%;
   min-height: 160px;
   border-radius: 10px;

@@ -3,11 +3,17 @@ const busSchedule = {
   schedule: {
     weekdays: {
       셔틀버스: {
-        destination: ["천안역", "천안아산역"],
+        type: "셔틀버스",
         times: [
-          "03:10",
-          "03:30",
-          "03:50",
+          "07:45",
+          "08:00",
+          "08:15",
+          "08:30",
+          "08:45",
+          "09:00",
+          "09:15",
+          "09:30",
+          "09:45",
           "10:00",
           "10:15",
           "10:30",
@@ -17,10 +23,39 @@ const busSchedule = {
           "11:40",
           "12:00",
           "12:20",
+          "12:40",
+          "13:00",
+          "13:20",
+          "13:40",
+          "14:00",
+          "14:15",
+          "14:30",
+          "14:45",
+          "15:00",
+          "15:15",
+          "15:30",
+          "15:45",
+          "16:00",
+          "16:15",
+          "16:30",
+          "16:45",
+          "17:00",
+          "17:15",
+          "17:30",
+          "17:45",
+          "18:00",
+          "18:15",
+          "18:30",
+          "18:45",
+          "19:00",
+          "19:30",
+          "20:00",
+          "20:30",
+          "21:00",
         ],
       },
       "1000번": {
-        destination: ["천안역"],
+        type: "시내버스",
         times: [
           "07:20",
           "08:45",
@@ -38,7 +73,7 @@ const busSchedule = {
         ],
       },
       순환5번: {
-        destination: ["천안아산역"],
+        type: "시내버스",
         times: [
           "07:00",
           "07:30",
@@ -62,26 +97,69 @@ const busSchedule = {
         ],
       },
       "810번": {
-        destination: [],
-        times: ["11:50", "12:05"],
+        type: "시내버스",
+        times: ["07:00", "09:40", "11:00", "16:30", "18:10"],
       },
     },
     weekends: {
       셔틀버스: {
-        destination: ["천안역", "천안아산역"],
-        times: ["10:10", "11:20", "12:40"],
+        type: "셔틀버스",
+        times: [
+          "08:20",
+          "10:00",
+          "12:30",
+          "13:30",
+          "15:00",
+          "16:00",
+          "17:00",
+          "18:00",
+        ],
       },
       "1000번": {
-        destination: ["천안역"],
-        times: ["10:30", "11:55", "12:25"],
+        type: "시내버스",
+        times: [
+          "07:20",
+          "08:45",
+          "09:35",
+          "11:05",
+          "11:55",
+          "13:20",
+          "14:05",
+          "15:35",
+          "16:20",
+          "17:45",
+          "18:35",
+          "20:05",
+          "20:50",
+        ],
       },
       순환5번: {
-        destination: ["천안아산역"],
-        times: ["10:15", "11:35", "12:55"],
+        type: "시내버스",
+        times: [
+          "07:00",
+          "07:30",
+          "08:25",
+          "09:15",
+          "10:00",
+          "10:45",
+          "11:30",
+          "12:15",
+          "13:00",
+          "13:45",
+          "14:30",
+          "15:15",
+          "16:00",
+          "16:45",
+          "17:30",
+          "18:15",
+          "19:00",
+          "19:45",
+          "20:30",
+        ],
       },
       "810번": {
-        destination: [],
-        times: ["10:45", "11:05", "12:15"],
+        type: "시내버스",
+        times: ["07:00", "09:40", "11:00", "16:30", "18:10"],
       },
     },
   },
@@ -107,8 +185,8 @@ function groupByHour(scheduleData) {
 }
 
 // 그룹화된 데이터 저장
-const weekdaysGrouped = groupByHour(busSchedule.schedule.weekdays);
-const weekendsGrouped = groupByHour(busSchedule.schedule.weekends);
+export const weekdaysGrouped = groupByHour(busSchedule.schedule.weekdays);
+export const weekendsGrouped = groupByHour(busSchedule.schedule.weekends);
 
 export function comingBuses(isWeekend, currentTime) {
   const groupedData = isWeekend ? weekendsGrouped : weekdaysGrouped;
