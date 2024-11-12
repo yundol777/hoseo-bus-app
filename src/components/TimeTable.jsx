@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Icons from "../assets/icons/Icons";
 import { weekdaysGrouped, weekendsGrouped } from "../assets/data/busData";
+import { Link } from "react-router-dom";
 
 const TimeTableContainer = styled.div`
   box-sizing: border-box;
@@ -16,8 +17,18 @@ const TimeNav = styled.div`
   align-items: flex-end;
 
   > a {
+    text-decoration: none;
     font-size: 0.75rem;
     color: #a8a8a8;
+    &:visited,
+    &:active,
+    &:focus {
+      color: #a8a8a8; /* 링크의 모든 상태에서 색상 유지 */
+    }
+
+    &:hover {
+      color: #7f7f7f;
+    }
   }
 `;
 
@@ -238,7 +249,7 @@ const TimeTable = () => {
             주말, 공휴일
           </Button>
         </TimeOption>
-        <a href="#"></a>
+        <Link to={"bus-route"}>노선 확인하기 &gt;</Link>
       </TimeNav>
       <Divider />
       <BusOption>
