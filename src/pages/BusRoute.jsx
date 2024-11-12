@@ -51,7 +51,7 @@ const Divider = styled.hr`
 `;
 
 const RouteMain = styled.div`
-  padding: 0.75rem 24px 0 24px;
+  padding: 0.75rem 24px;
   display: flex;
   flex-direction: column;
   gap: 9px;
