@@ -145,7 +145,7 @@ const BusList = styled.div`
 
 const Buses = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
 `;
 
@@ -156,7 +156,14 @@ const BusMinute = styled.div`
   color: #7f7f7f;
 `;
 
+const MinuteBusList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+`;
+
 const Bus = styled.span`
+  margin-top: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,7 +176,9 @@ const Bus = styled.span`
       ? "#A51622"
       : props.busName === "1000번"
       ? "#6782EA"
-      : "#ECAB56"};
+      : props.busName === "순환5번"
+      ? "#ECAB56"
+      : "#3CAB5D"};
   font-size: 8px;
   font-weight: 700;
 `;
@@ -286,11 +295,13 @@ const TimeTable = () => {
                 {Object.keys(minuteGrouped["00"]).map((minute) => (
                   <Buses key={minute}>
                     <BusMinute>{String(minute).padStart(2, "0")}</BusMinute>
-                    {minuteGrouped["00"][minute].map((bus, index) => (
-                      <Bus key={index} busName={bus.bus_name}>
-                        {bus.bus_name}
-                      </Bus>
-                    ))}
+                    <MinuteBusList>
+                      {minuteGrouped["00"][minute].map((bus, index) => (
+                        <Bus key={index} busName={bus.bus_name}>
+                          {bus.bus_name}
+                        </Bus>
+                      ))}
+                    </MinuteBusList>
                   </Buses>
                 ))}
               </BusList>

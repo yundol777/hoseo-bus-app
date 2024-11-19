@@ -5,6 +5,9 @@ import shuttle from "../assets/images/shuttle.png";
 import num1000 from "../assets/images/1000.png";
 import sh5 from "../assets/images/sh5.png";
 import num810 from "../assets/images/810.png";
+import num820 from "../assets/images/820.png";
+import num821 from "../assets/images/821.png";
+import num822 from "../assets/images/822.png";
 
 const BusRouteContainer = styled.div`
   min-height: 100vh;
@@ -71,7 +74,9 @@ const Bus = styled.span`
       ? "#A51622"
       : props.busName === "1000번"
       ? "#6782EA"
-      : "#ECAB56"};
+      : props.busName === "순환5번"
+      ? "#ECAB56"
+      : "#3CAB5D"};
   font-size: 12px;
   font-weight: 900;
 `;
@@ -116,6 +121,18 @@ const BusRoute = () => {
         <Bus busName="810번">810번</Bus>
         <RouteContainer>
           <img src={num810} alt="" />
+        </RouteContainer>
+        <Bus busName="820번">820번</Bus>
+        <RouteContainer>
+          <img src={num820} alt="" />
+        </RouteContainer>
+        <Bus busName="821번">821번</Bus>
+        <RouteContainer>
+          <img src={num821} alt="" />
+        </RouteContainer>
+        <Bus busName="822번">822번</Bus>
+        <RouteContainer>
+          <img src={num822} alt="" />
         </RouteContainer>
       </RouteMain>
     </BusRouteContainer>

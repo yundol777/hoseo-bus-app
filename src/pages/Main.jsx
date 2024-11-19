@@ -6,7 +6,7 @@ import TimeTable from "../components/TimeTable";
 const MainContainer = styled.div`
   min-height: 100vh;
   background-color: #f7f7f7;
-  font-family: "Noto Sans", "Apple SD Gothic Neo", sans-serif;
+  font-family: "Noto Sans", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
 
   display: flex;
   flex-direction: column;
