@@ -100,6 +100,13 @@ const Board = () => {
   const [minute, setMinute] = useRecoilState(timeState);
   const [busData, setBusData] = useState([]);
 
+  // 요일에 따른 타입 결정
+  const getDayType = (day) => {
+    if (day === 0) return "sunday"; // 일요일
+    if (day === 6) return "saturday"; // 토요일
+    return "weekdays"; // 평일
+  };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       const newTime = new Date();
@@ -112,18 +119,18 @@ const Board = () => {
       }
     }, 1000);
 
-    // 리턴을 사용해 타이머를 정리
-    return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 실행
+    // 타이머 정리
+    return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
-    // 주말 여부 판단
-    const isWeekend = time.getDay() === 0 || time.getDay() === 6;
+    // 요일 타입 결정
+    const dayType = getDayType(time.getDay());
 
-    // 30분 이내 도착 버스 정보를 갱신
-    const buses = comingBuses(isWeekend, time);
+    // 30분 이내 도착 버스 정보 갱신
+    const buses = comingBuses(dayType, time);
     setBusData(buses);
-  }, [minute, time]); // 분 또는 time이 변경될 때마다 실행
+  }, [minute, time]); // minute 또는 time이 변경될 때마다 실행
 
   return (
     <BoardContainer>
@@ -165,7 +172,7 @@ const Board = () => {
         </BusPrint>
         <Highlight>
           <p>
-            곧도착 :{" "}
+            곧도착:{" "}
             {busData
               .filter((bus) => bus.timeLeft <= 2) // 남은 시간이 2분 이하인 버스 필터링
               .map((bus) => bus.bus_name) // bus_name만 추출

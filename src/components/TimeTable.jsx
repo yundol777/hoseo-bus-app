@@ -1,7 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Icons from "../assets/icons/Icons";
-import { weekdaysGrouped, weekendsGrouped } from "../assets/data/busData";
+import {
+  weekdaysGrouped,
+  saturdayGrouped,
+  sundayGrouped,
+} from "../assets/data/busData";
 import { Link } from "react-router-dom";
 
 const TimeTableContainer = styled.div`
@@ -38,14 +42,14 @@ const TimeOption = styled.div`
 `;
 
 const Button = styled.div`
-  color: ${(props) => (props.isWeekend ? "#ffffff" : "#474747")};
-  background-color: ${(props) => (props.isWeekend ? "#A51622" : "#ffffff")};
+  color: ${(props) => (props.isActive ? "#ffffff" : "#474747")};
+  background-color: ${(props) => (props.isActive ? "#A51622" : "#ffffff")};
   border: 1px solid #474747;
-  padding: ${(props) => (props.isWeekend ? "6px 7px" : "6px 10px")};
+  padding: 6px 10px;
   font-weight: 900;
   border-radius: 5px;
   height: 100%;
-  opacity: ${(props) => (props.active ? "1" : "0.5")};
+  opacity: ${(props) => (props.isActive ? "1" : "0.5")};
 
   display: flex;
   justify-content: center;
@@ -184,21 +188,31 @@ const Bus = styled.span`
 `;
 
 const TimeTable = () => {
-  const [activeButton, setActiveButton] = useState("weekdays");
+  const getDefaultDay = () => {
+    const today = new Date().getDay(); // 0: 일요일, 1: 월요일, ..., 6: 토요일
+    if (today === 0) return "sunday"; // 일요일
+    if (today === 6) return "saturday"; // 토요일
+    return "weekdays"; // 나머지는 평일
+  };
+
+  const [activeButton, setActiveButton] = useState(getDefaultDay());
   const [activeOption, setActiveOption] = useState(null);
 
   const toggleOption = (option) => {
     setActiveOption(activeOption === option ? null : option);
   };
 
-  const isWeekend = activeButton === "weekends";
-  const groupedData = isWeekend ? weekendsGrouped : weekdaysGrouped;
+  const groupedData =
+    activeButton === "weekdays"
+      ? weekdaysGrouped
+      : activeButton === "saturday"
+      ? saturdayGrouped
+      : sundayGrouped;
 
   function groupByMinuteRange(hourData, activeOption) {
     const rangeData = { "00": {}, 30: {} };
 
     hourData.forEach((bus) => {
-      // 셔틀버스를 제외한 모든 버스 표시
       const shouldInclude =
         !activeOption ||
         (activeOption === "셔틀버스" && bus.bus_name === "셔틀버스") ||
@@ -244,18 +258,22 @@ const TimeTable = () => {
       <TimeNav>
         <TimeOption>
           <Button
-            isWeekend={false}
-            active={activeButton === "weekdays"}
+            isActive={activeButton === "weekdays"}
             onClick={() => setActiveButton("weekdays")}
           >
             평일
           </Button>
           <Button
-            isWeekend={true}
-            active={activeButton === "weekends"}
-            onClick={() => setActiveButton("weekends")}
+            isActive={activeButton === "saturday"}
+            onClick={() => setActiveButton("saturday")}
           >
-            주말, 공휴일
+            토요일
+          </Button>
+          <Button
+            isActive={activeButton === "sunday"}
+            onClick={() => setActiveButton("sunday")}
+          >
+            일요일
           </Button>
         </TimeOption>
         <Link to={"bus-route"}>노선 확인하기 &gt;</Link>
