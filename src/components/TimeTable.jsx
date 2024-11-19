@@ -38,7 +38,7 @@ const TimeNav = styled.div`
 
 const TimeOption = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 6px;
 `;
 
 const Button = styled.div`
