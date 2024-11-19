@@ -182,7 +182,7 @@ const Bus = styled.span`
       ? "#6782EA"
       : props.busName === "순환5번"
       ? "#ECAB56"
-      : "#3CAB5D"};
+      : "#66AF7C"};
   font-size: 8px;
   font-weight: 700;
 `;
