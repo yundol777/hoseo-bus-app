@@ -44,7 +44,7 @@ const BoardMain = styled.div`
 `;
 
 const BusPrint = styled.div`
-  padding: 24px;
+  padding: 16px 24px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -79,8 +79,6 @@ const CityBusPrint = styled.div`
 `;
 
 const Highlight = styled.div`
-  position: absolute;
-  bottom: 0;
   width: calc(100% + 4px);
   margin-left: -2px;
   margin-bottom: -2px;
