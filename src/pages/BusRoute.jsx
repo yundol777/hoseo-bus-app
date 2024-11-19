@@ -9,7 +9,7 @@ import num810 from "../assets/images/810.png";
 const BusRouteContainer = styled.div`
   min-height: 100vh;
   background-color: #f7f7f7;
-  font-family: "Noto Sans";
+  font-family: "Noto Sans", "Apple SD Gothic Neo", sans-serif;
 
   display: flex;
   flex-direction: column;
