@@ -222,7 +222,7 @@ const TimeTable = () => {
 
       if (shouldInclude) {
         const minuteKey = bus.minute;
-        const rangeKey = minuteKey <= 30 ? "00" : "30";
+        const rangeKey = minuteKey < 30 ? "00" : "30";
 
         if (!rangeData[rangeKey][minuteKey]) {
           rangeData[rangeKey][minuteKey] = [];
@@ -339,11 +339,13 @@ const TimeTable = () => {
                 {Object.keys(minuteGrouped["30"]).map((minute) => (
                   <Buses key={minute}>
                     <BusMinute>{String(minute).padStart(2, "0")}</BusMinute>
-                    {minuteGrouped["30"][minute].map((bus, index) => (
-                      <Bus key={index} busName={bus.bus_name}>
-                        {bus.bus_name}
-                      </Bus>
-                    ))}
+                    <MinuteBusList>
+                      {minuteGrouped["30"][minute].map((bus, index) => (
+                        <Bus key={index} busName={bus.bus_name}>
+                          {bus.bus_name}
+                        </Bus>
+                      ))}
+                    </MinuteBusList>
                   </Buses>
                 ))}
               </BusList>
