@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 import shuttle from "../assets/images/shuttle.png";
+import shuttle_asan from "../assets/images/shuttle_asan.png";
+import shuttle_onyang from "../assets/images/shuttle_onyang.png";
 import num1000 from "../assets/images/1000.png";
 import sh5 from "../assets/images/sh5.png";
 import num810 from "../assets/images/810.png";
@@ -64,7 +66,7 @@ const Bus = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 52px;
+  width: 58px;
   height: 20px;
   margin-top: 4px;
   border-radius: 5px;
@@ -72,6 +74,8 @@ const Bus = styled.span`
   background-color: ${(props) =>
     props.busName === "셔틀버스"
       ? "#A51622"
+      : props.busName === "셔틀(아산)"
+      ? "#6782EA"
       : props.busName === "1000번"
       ? "#6782EA"
       : props.busName === "순환5번"
@@ -110,6 +114,10 @@ const BusRoute = () => {
         <RouteContainer>
           <img src={shuttle} alt="" />
         </RouteContainer>
+        <Bus busName="셔틀(아산)">셔틀(아산)</Bus>
+        <RouteContainer>
+          <img src={shuttle_asan} alt="" />
+        </RouteContainer>
         <Bus busName="1000번">1000번</Bus>
         <RouteContainer>
           <img src={num1000} alt="" />
@@ -117,6 +125,10 @@ const BusRoute = () => {
         <Bus busName="순환5번">순환5번</Bus>
         <RouteContainer>
           <img src={sh5} alt="" />
+        </RouteContainer>
+        <Bus busName="셔틀(온양)">셔틀(온양)</Bus>
+        <RouteContainer>
+          <img src={shuttle_onyang} alt="" />
         </RouteContainer>
         <Bus busName="810번">810번</Bus>
         <RouteContainer>

@@ -178,6 +178,8 @@ const Bus = styled.span`
   background-color: ${(props) =>
     props.busName === "셔틀버스"
       ? "#A51622"
+      : props.busName === "셔틀(아산)"
+      ? "#6782EA"
       : props.busName === "1000번"
       ? "#6782EA"
       : props.busName === "순환5번"
@@ -215,8 +217,8 @@ const TimeTable = () => {
     hourData.forEach((bus) => {
       const shouldInclude =
         !activeOption ||
-        (activeOption === "셔틀버스" && bus.bus_name === "셔틀버스") ||
-        (activeOption === "시내버스" && bus.bus_name !== "셔틀버스");
+        (activeOption === "셔틀버스" && bus.type === "셔틀버스") ||
+        (activeOption === "시내버스" && bus.type !== "셔틀버스");
 
       if (shouldInclude) {
         const minuteKey = bus.minute;
@@ -232,9 +234,18 @@ const TimeTable = () => {
 
     ["00", "30"].forEach((range) => {
       Object.keys(rangeData[range]).forEach((minute) => {
-        rangeData[range][minute].sort((a, b) =>
-          a.bus_name === "셔틀버스" ? -1 : 1
-        );
+        rangeData[range][minute].sort((a, b) => {
+          // 1단계: bus_name이 "셔틀버스"인 경우가 가장 먼저
+          if (a.bus_name === "셔틀버스" && b.bus_name !== "셔틀버스") return -1;
+          if (a.bus_name !== "셔틀버스" && b.bus_name === "셔틀버스") return 1;
+
+          // 2단계: type이 "셔틀버스"인 경우가 두 번째
+          if (a.type === "셔틀버스" && b.type !== "셔틀버스") return -1;
+          if (a.type !== "셔틀버스" && b.type === "셔틀버스") return 1;
+
+          // 3단계: 나머지 항목
+          return 0;
+        });
       });
     });
 

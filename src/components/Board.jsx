@@ -54,14 +54,16 @@ const BusPrint = styled.div`
     display: flex;
     justify-content: space-between;
     font-weight: 900;
-
-    > .name {
-    }
   }
 `;
 
 const LeftTime = styled.p`
-  color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
+  color: ${(props) =>
+    props.timeLeft <= 5
+      ? "#A51622"
+      : props.timeLeft <= 10
+      ? "#ECAB56"
+      : "#474747"};
 `;
 
 const ShuttleBusPrint = styled.div`
@@ -127,8 +129,10 @@ const Board = () => {
     // 요일 타입 결정
     const dayType = getDayType(time.getDay());
 
-    // 30분 이내 도착 버스 정보 갱신
-    const buses = comingBuses(dayType, time);
+    // 25분 이내 도착 버스 정보 갱신
+    const buses = comingBuses(dayType, time).filter(
+      (bus) => bus.timeLeft <= 25
+    );
     setBusData(buses);
   }, [minute, time]); // minute 또는 time이 변경될 때마다 실행
 
@@ -151,7 +155,7 @@ const Board = () => {
         <BusPrint>
           <ShuttleBusPrint>
             {busData
-              .filter((bus) => bus.bus_name === "셔틀버스")
+              .filter((bus) => bus.type === "셔틀버스")
               .map((bus, index) => (
                 <div key={index} className="bus">
                   <p className="name">{bus.bus_name}</p>
@@ -161,7 +165,7 @@ const Board = () => {
           </ShuttleBusPrint>
           <CityBusPrint>
             {busData
-              .filter((bus) => bus.bus_name !== "셔틀버스")
+              .filter((bus) => bus.type !== "셔틀버스")
               .map((bus, index) => (
                 <div key={index} className="bus">
                   <p className="name">{bus.bus_name}</p>

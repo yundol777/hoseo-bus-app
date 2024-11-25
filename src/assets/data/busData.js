@@ -57,6 +57,47 @@ const busSchedule = {
           "21:00",
         ],
       },
+      "셔틀(아산)": {
+        type: "셔틀버스",
+        times: [
+          "08:40",
+          "08:55",
+          "09:10",
+          "09:25",
+          "09:40",
+          "09:55",
+          "10:10",
+          "10:25",
+          "10:55",
+          "11:30",
+          "11:55",
+          "12:30",
+          "12:55",
+          "13:30",
+          "13:55",
+          "14:10",
+          "14:25",
+          "14:40",
+          "14:55",
+          "15:10",
+          "15:25",
+          "15:40",
+          "15:50",
+          "16:10",
+          "16:25",
+          "16:40",
+          "16:55",
+          "17:10",
+          "17:25",
+          "17:45",
+          "19:25",
+          "20:55",
+        ],
+      },
+      "셔틀(온양)": {
+        type: "셔틀버스",
+        times: ["08:00", "09:10", "13:30", "16:30", "17:40"],
+      },
       "1000번": {
         type: "시내버스",
         times: [
@@ -129,6 +170,10 @@ const busSchedule = {
           "17:00",
           "18:00",
         ],
+      },
+      "셔틀(온양)": {
+        type: "셔틀버스",
+        times: ["11:00", "14:30", "16:30"],
       },
       "1000번": {
         type: "시내버스",
@@ -210,6 +255,10 @@ const busSchedule = {
           "21:00",
         ],
       },
+      "셔틀(온양)": {
+        type: "셔틀버스",
+        times: ["11:00", "14:30", "16:30"],
+      },
       "1000번": {
         type: "시내버스",
         times: [
@@ -284,7 +333,11 @@ function groupByHour(scheduleData) {
       if (!groupedData[key]) {
         groupedData[key] = [];
       }
-      groupedData[key].push({ bus_name: busName, minute: parseInt(minute) });
+      groupedData[key].push({
+        bus_name: busName,
+        minute: parseInt(minute),
+        type: busInfo.type,
+      });
     });
   }
 
@@ -328,6 +381,7 @@ export function comingBuses(currentDay, currentTime) {
         result.push({
           bus_name: bus.bus_name,
           timeLeft: timeDifference,
+          type: bus.type,
         });
       }
     });
