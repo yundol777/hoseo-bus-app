@@ -58,7 +58,7 @@ const BusPrint = styled.div`
 `;
 
 const LeftTime = styled.p`
-  color: ${(props) => (props.timeLeft <= 10 ? "#A51622" : "#474747")};
+  color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
 `;
 
 const ShuttleBusPrint = styled.div`
