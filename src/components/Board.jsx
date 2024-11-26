@@ -121,13 +121,10 @@ const Board = () => {
   }, []);
 
   useEffect(() => {
-    // 요일 타입 결정
     const dayType = getDayType(time.getDay());
-
-    // 25분 이내 도착 버스 정보 갱신
-    const buses = comingBuses(dayType, time).filter(
-      (bus) => bus.timeLeft <= 25
-    );
+    const buses = comingBuses(dayType, time)
+      .filter((bus) => bus.timeLeft <= 25) // 25분 이내 필터링
+      .sort((a, b) => a.timeLeft - b.timeLeft); // 남은 시간 기준 정렬
     setBusData(buses);
   }, [minute, time]); // minute 또는 time이 변경될 때마다 실행
 
