@@ -23,6 +23,12 @@ const HeaderLogo = styled.div`
     width: 116px;
     height: 67px;
   }
+`;
+
+const LocalChoice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   > p {
     font-size: 12px;
@@ -30,15 +36,24 @@ const HeaderLogo = styled.div`
     font-weight: 500;
     white-space: nowrap;
   }
-`;
 
+  > select {
+    --custom-background: black;
+  }
+`;
 
 const Header = () => {
   return (
     <HeaderContainer>
       <HeaderLogo>
         <img src={logo} alt="Hoseo-University Logo" />
-        <p>호서대학교 아산캠퍼스</p>
+        <LocalChoice>
+          <p>호서대학교</p>
+          <select>
+            <option value="asan">아산캠퍼스</option>
+            <option value="cheonan">천안캠퍼스</option>
+          </select>
+        </LocalChoice>
       </HeaderLogo>
     </HeaderContainer>
   );
