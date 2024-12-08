@@ -48,11 +48,11 @@ const Header = () => {
       <HeaderLogo>
         <img src={logo} alt="Hoseo-University Logo" />
         <LocalChoice>
-          <p>호서대학교</p>
-          <select>
+          <p>호서대학교 아산캠퍼스</p>
+          {/* <select>
             <option value="asan">아산캠퍼스</option>
             <option value="cheonan">천안캠퍼스</option>
-          </select>
+          </select> */}
         </LocalChoice>
       </HeaderLogo>
     </HeaderContainer>
