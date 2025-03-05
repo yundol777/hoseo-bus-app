@@ -62,7 +62,9 @@ const RouteMain = styled.div`
   gap: 9px;
 `;
 
-const Bus = styled.span`
+const Bus = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "busName",
+})`
   display: flex;
   justify-content: center;
   align-items: center;
