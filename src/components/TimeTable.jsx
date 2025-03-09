@@ -45,7 +45,8 @@ const Button = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "isActive",
 })`
   color: ${(props) => (props.isActive ? "#ffffff" : "#474747")};
-  background-color: ${(props) => (props.isActive ? "#A51622" : "#ffffff")};
+  background-color: ${(props) =>
+    props.isActive ? (props) => props.theme.primary : "#ffffff"};
   border: 1px solid #474747;
   padding: 6px 10px;
   font-weight: 900;

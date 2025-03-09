@@ -13,11 +13,11 @@ export default defineConfig({
       },
       includeAssets: [
         "favicon.ico",
-        "favicon-16x16.png",
-        "favicon-32x32.png",
-        "icon-192x192.png",
-        "icon-512x512.png",
-        "apple-touch-icon.png",
+        "icons/favicon-16x16.png",
+        "icons/favicon-32x32.png",
+        "icons/icon-192x192.png",
+        "icons/icon-512x512.png",
+        "icons/apple-touch-icon.png",
         "manifest.json",
       ],
       manifest: {
@@ -30,27 +30,27 @@ export default defineConfig({
         display: "standalone",
         icons: [
           {
-            src: "/icon-192x192.png",
+            src: "icons/icon-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "/icon-512x512.png",
+            src: "icons/icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "/apple-touch-icon.png",
+            src: "icons/apple-touch-icon.png",
             sizes: "180x180",
             type: "image/png",
           },
           {
-            src: "/icon-192x192.png",
+            src: "icons/icon-192x192.png",
             sizes: "144x144",
             type: "image/png",
           },
           {
-            src: "/favicon-32x32.png",
+            src: "icons/favicon-32x32.png",
             sizes: "96x96",
             type: "image/png",
           },

@@ -60,7 +60,8 @@ const BusPrint = styled.div`
 const LeftTime = styled.p.withConfig({
   shouldForwardProp: (prop) => prop !== "timeLeft",
 })`
-  color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
+  color: ${(props) =>
+    props.timeLeft < 10 ? (props) => props.theme.primary : "#474747"};
 `;
 
 const ShuttleBusPrint = styled.div`
@@ -84,7 +85,7 @@ const Highlight = styled.div`
   padding-left: 26px;
 
   height: 40px;
-  border: 3px solid #a51622;
+  border: 3px solid ${(props) => props.theme.primary};
   border-radius: 10px;
   box-sizing: border-box;
 
