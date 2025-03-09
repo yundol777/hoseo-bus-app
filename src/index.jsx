@@ -5,6 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
+import { registerSW } from "virtual:pwa-register";
+
+const updateSW = registerSW({
+  onNeedRefresh() {
+    console.log("새로운 컨텐츠가 있습니다. 페이지를 새로고침하세요.");
+  },
+  onOfflineReady() {
+    console.log("앱이 오프라인 모드에서 사용할 준비가 되었습니다.");
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
