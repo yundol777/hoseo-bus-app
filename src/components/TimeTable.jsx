@@ -1,11 +1,7 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import Icons from "../assets/icons/Icons";
-import {
-  weekdaysGrouped,
-  saturdayGrouped,
-  sundayGrouped,
-} from "../assets/data/busData";
+import { getBusSchedule } from "../assets/data/busData";
 import { Link } from "react-router-dom";
 
 const TimeTableContainer = styled.div`
@@ -195,6 +191,9 @@ const Bus = styled.span.withConfig({
 `;
 
 const TimeTable = () => {
+  const theme = useTheme();
+  const { weekdays, saturday, sunday } = getBusSchedule(theme.campus);
+
   const getDefaultDay = () => {
     const today = new Date().getDay(); // 0: 일요일, 1: 월요일, ..., 6: 토요일
     if (today === 0) return "sunday"; // 일요일
@@ -211,10 +210,10 @@ const TimeTable = () => {
 
   const groupedData =
     activeButton === "weekdays"
-      ? weekdaysGrouped
+      ? weekdays
       : activeButton === "saturday"
-      ? saturdayGrouped
-      : sundayGrouped;
+      ? saturday
+      : sunday;
 
   function groupByMinuteRange(hourData, activeOption) {
     const rangeData = { "00": {}, 30: {} };
