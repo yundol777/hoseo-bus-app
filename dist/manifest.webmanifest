@@ -1,0 +1,1 @@
+{"name":"호서대 버스시간표","short_name":"호서버스","start_url":"/","display":"standalone","background_color":"#ffffff","lang":"en","scope":"/","description":"호서대학교 셔틀 및 시내버스 정보를 제공하는 PWA 버스 시간표 앱","theme_color":"#ffffff","icons":[{"src":"/favicon-196x196.png","type":"image/png"}]}

@@ -41,7 +41,9 @@ const TimeOption = styled.div`
   gap: 6px;
 `;
 
-const Button = styled.div`
+const Button = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isActive",
+})`
   color: ${(props) => (props.isActive ? "#ffffff" : "#474747")};
   background-color: ${(props) => (props.isActive ? "#A51622" : "#ffffff")};
   border: 1px solid #474747;
@@ -166,7 +168,9 @@ const MinuteBusList = styled.div`
   gap: 6px;
 `;
 
-const Bus = styled.span`
+const Bus = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== "busName",
+})`
   margin-top: 2px;
   display: flex;
   justify-content: center;
@@ -292,7 +296,7 @@ const TimeTable = () => {
       <Divider />
       <BusOption>
         <BusOptionItem
-          active={activeOption === "셔틀버스"}
+          active={activeOption === "셔틀버스" ? true : undefined}
           onClick={() => toggleOption("셔틀버스")}
         >
           {activeOption === "셔틀버스" ? (
@@ -303,7 +307,7 @@ const TimeTable = () => {
           <p>셔틀버스</p>
         </BusOptionItem>
         <BusOptionItem
-          active={activeOption === "시내버스"}
+          active={activeOption === "시내버스" ? true : undefined}
           onClick={() => toggleOption("시내버스")}
         >
           {activeOption === "시내버스" ? (

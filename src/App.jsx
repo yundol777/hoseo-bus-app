@@ -6,8 +6,8 @@ import BusRoute from "./pages/BusRoute";
 function App() {
   return (
     <Routes>
-      <Route path="/hoseo-bus-app" element={<Main />} />
-      <Route path="/hoseo-bus-app/bus-route" element={<BusRoute />} />
+      <Route path="/" element={<Main />} />
+      <Route path="/bus-route" element={<BusRoute />} />
     </Routes>
   );
 }

@@ -57,7 +57,9 @@ const BusPrint = styled.div`
   }
 `;
 
-const LeftTime = styled.p`
+const LeftTime = styled.p.withConfig({
+  shouldForwardProp: (prop) => prop !== "timeLeft",
+})`
   color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
 `;
 
