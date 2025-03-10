@@ -181,6 +181,8 @@ const Bus = styled.span.withConfig({
       ? (props) => props.theme.primary
       : props.busName === "셔틀(아산)"
       ? "#6782EA"
+      : props.busName === "셔틀(KTX)"
+      ? "#6782EA"
       : props.busName === "1000번"
       ? "#6782EA"
       : props.busName === "순환5번"
