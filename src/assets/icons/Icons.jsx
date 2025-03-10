@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import CheckboxIcon from "./checkbox.svg";
+import CheckboxIconBlue from "./checkboxBlue.svg";
 import NonCheckboxIcon from "./noncheckbox.svg";
 import ChangeBtnIcon from "./changeBtn.svg";
 
@@ -14,7 +15,17 @@ const ChangeBtnImg = styled.img`
 `;
 
 const Icons = {
-  Checkbox: () => <BoxIconsImg src={CheckboxIcon} alt="CheckboxIcon" />,
+  Checkbox: () => {
+    const theme = useTheme();
+    const isAsan = theme.campus === "asan";
+
+    return (
+      <BoxIconsImg
+        src={isAsan ? CheckboxIcon : CheckboxIconBlue}
+        alt="CheckboxIcon"
+      />
+    );
+  },
   NonCheckbox: () => (
     <BoxIconsImg src={NonCheckboxIcon} alt="NonCheckboxIcon" />
   ),

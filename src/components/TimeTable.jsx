@@ -178,7 +178,7 @@ const Bus = styled.span.withConfig({
   color: white;
   background-color: ${(props) =>
     props.busName === "셔틀버스"
-      ? "#A51622"
+      ? (props) => props.theme.primary
       : props.busName === "셔틀(아산)"
       ? "#6782EA"
       : props.busName === "1000번"
