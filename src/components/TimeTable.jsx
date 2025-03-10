@@ -1,11 +1,7 @@
 import { useState } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import Icons from "../assets/icons/Icons";
-import {
-  weekdaysGrouped,
-  saturdayGrouped,
-  sundayGrouped,
-} from "../assets/data/busData";
+import { getBusSchedule } from "../assets/data/busData";
 import { Link } from "react-router-dom";
 
 const TimeTableContainer = styled.div`
@@ -45,7 +41,8 @@ const Button = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "isActive",
 })`
   color: ${(props) => (props.isActive ? "#ffffff" : "#474747")};
-  background-color: ${(props) => (props.isActive ? "#A51622" : "#ffffff")};
+  background-color: ${(props) =>
+    props.isActive ? (props) => props.theme.primary : "#ffffff"};
   border: 1px solid #474747;
   padding: 6px 10px;
   font-weight: 900;
@@ -181,7 +178,7 @@ const Bus = styled.span.withConfig({
   color: white;
   background-color: ${(props) =>
     props.busName === "셔틀버스"
-      ? "#A51622"
+      ? (props) => props.theme.primary
       : props.busName === "셔틀(아산)"
       ? "#6782EA"
       : props.busName === "1000번"
@@ -194,6 +191,9 @@ const Bus = styled.span.withConfig({
 `;
 
 const TimeTable = () => {
+  const theme = useTheme();
+  const { weekdays, saturday, sunday } = getBusSchedule(theme.campus);
+
   const getDefaultDay = () => {
     const today = new Date().getDay(); // 0: 일요일, 1: 월요일, ..., 6: 토요일
     if (today === 0) return "sunday"; // 일요일
@@ -210,10 +210,10 @@ const TimeTable = () => {
 
   const groupedData =
     activeButton === "weekdays"
-      ? weekdaysGrouped
+      ? weekdays
       : activeButton === "saturday"
-      ? saturdayGrouped
-      : sundayGrouped;
+      ? saturday
+      : sunday;
 
   function groupByMinuteRange(hourData, activeOption) {
     const rangeData = { "00": {}, 30: {} };

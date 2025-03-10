@@ -12,10 +12,10 @@ const MainContainer = styled.div`
   flex-direction: column;
 `;
 
-const Main = () => {
+const Main = ({ setSelectedTheme }) => {
   return (
     <MainContainer>
-      <Header />
+      <Header setSelectedTheme={setSelectedTheme} />
       <Board />
       <TimeTable />
     </MainContainer>

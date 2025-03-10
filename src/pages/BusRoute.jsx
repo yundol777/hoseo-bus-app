@@ -97,7 +97,7 @@ const RouteContainer = styled.div`
   padding: 1rem 6px;
 `;
 
-const BusRoute = () => {
+const BusRoute = ({ setSelectedTheme }) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -105,7 +105,7 @@ const BusRoute = () => {
   };
   return (
     <BusRouteContainer>
-      <Header />
+      <Header setSelectedTheme={setSelectedTheme} />
       <RouteHeader>
         <Link onClick={handleBack}>&lt; 뒤로가기</Link>
         <h2>버스 노선 모아보기</h2>

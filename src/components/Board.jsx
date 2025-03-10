@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { timeState } from "../recoil/timeState";
 import { comingBuses } from "../assets/data/busData";
 
@@ -60,7 +60,8 @@ const BusPrint = styled.div`
 const LeftTime = styled.p.withConfig({
   shouldForwardProp: (prop) => prop !== "timeLeft",
 })`
-  color: ${(props) => (props.timeLeft < 10 ? "#A51622" : "#474747")};
+  color: ${(props) =>
+    props.timeLeft < 10 ? (props) => props.theme.primary : "#474747"};
 `;
 
 const ShuttleBusPrint = styled.div`
@@ -84,7 +85,7 @@ const Highlight = styled.div`
   padding-left: 26px;
 
   height: 40px;
-  border: 3px solid #a51622;
+  border: 3px solid ${(props) => props.theme.primary};
   border-radius: 10px;
   box-sizing: border-box;
 
@@ -95,6 +96,7 @@ const Highlight = styled.div`
 `;
 
 const Board = () => {
+  const theme = useTheme();
   const [time, setTime] = useState(new Date());
   const [minute, setMinute] = useRecoilState(timeState);
   const [busData, setBusData] = useState([]);
@@ -124,11 +126,11 @@ const Board = () => {
 
   useEffect(() => {
     const dayType = getDayType(time.getDay());
-    const buses = comingBuses(dayType, time)
+    const buses = comingBuses(theme.campus, dayType, time)
       .filter((bus) => bus.timeLeft <= 25) // 25분 이내 필터링
       .sort((a, b) => a.timeLeft - b.timeLeft); // 남은 시간 기준 정렬
     setBusData(buses);
-  }, [minute, time]); // minute 또는 time이 변경될 때마다 실행
+  }, [theme.campus, minute, time]); // minute 또는 time이 변경될 때마다 실행
 
   return (
     <BoardContainer>
