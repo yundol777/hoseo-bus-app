@@ -3,8 +3,9 @@
   "short_name": "호서버스",
   "description": "호서대학교 셔틀 및 시내버스 정보를 제공하는 PWA 버스 시간표 앱",
   "start_url": "/",
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "theme_color": "#A51622",
+  "background_color": "#A51622",
+
   "display": "standalone",
   "icons": [
     {
@@ -21,6 +22,12 @@
       "src": "/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/splash.png",
+      "sizes": "160x160",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

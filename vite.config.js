@@ -18,6 +18,7 @@ export default defineConfig({
         "icons/icon-192x192.png",
         "icons/icon-512x512.png",
         "icons/apple-touch-icon.png",
+        "icons/splash.png",
         "manifest.json",
       ],
       manifest: {
@@ -25,8 +26,8 @@ export default defineConfig({
         short_name: "호서버스",
         description:
           "호서대학교 셔틀 및 시내버스 정보를 제공하는 PWA 버스 시간표 앱",
-        theme_color: "#ffffff",
-        background_color: "#ffffff",
+        theme_color: "#A51622",
+        background_color: "#A51622",
         display: "standalone",
         icons: [
           {
@@ -53,6 +54,12 @@ export default defineConfig({
             src: "icons/favicon-32x32.png",
             sizes: "96x96",
             type: "image/png",
+          },
+          {
+            src: "/icons/splash.png",
+            sizes: "160x160",
+            type: "image/png",
+            purpose: "any",
           },
         ],
       },
