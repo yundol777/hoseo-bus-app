@@ -19,7 +19,6 @@ export default defineConfig({
         "icons/icon-192x192.png",
         "icons/icon-512x512.png",
         "icons/apple-touch-icon.png",
-        "icons/splash.png",
         "manifest.json",
       ],
       manifest: {
@@ -55,12 +54,6 @@ export default defineConfig({
             src: "icons/favicon-32x32.png",
             sizes: "96x96",
             type: "image/png",
-          },
-          {
-            src: "/icons/splash.png",
-            sizes: "160x160",
-            type: "image/png",
-            purpose: "any",
           },
         ],
       },
