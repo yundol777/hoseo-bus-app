@@ -22,12 +22,6 @@
       "src": "/hoseo-bus-app/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png"
-    },
-    {
-      "src": "/hoseo-bus-app/icons/splash-160x160.png",
-      "sizes": "160x160",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
   ]
 }
