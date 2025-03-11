@@ -25,9 +25,9 @@ function Root() {
   );
 
   return (
-    <ThemeProvider theme={theme[selectedTheme] || theme.asan}>
+    <ThemeProvider theme={theme[selectedTheme]}>
       <RecoilRoot>
-        <BrowserRouter>
+        <BrowserRouter basename="/hoseo-bus-app">
           <App setSelectedTheme={setSelectedTheme} />
         </BrowserRouter>
       </RecoilRoot>
