@@ -2,7 +2,7 @@
   "name": "호서대 버스시간표",
   "short_name": "호서버스",
   "description": "호서대학교 셔틀 및 시내버스 정보를 제공하는 PWA 버스 시간표 앱",
-  "start_url": "/",
+  "start_url": "/hoseo-bus-app/",
   "theme_color": "#A51622",
   "background_color": "#A51622",
 
