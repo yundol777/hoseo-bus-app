@@ -9,6 +9,15 @@ import { registerSW } from "virtual:pwa-register";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
 
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && typeof gtag === "function") {
+    gtag("event", "page_view", {
+      page_path: window.location.pathname,
+      page_title: document.title,
+    });
+  }
+});
+
 const updateSW = registerSW({
   onNeedRefresh() {
     console.log("새로운 컨텐츠가 있습니다.");
