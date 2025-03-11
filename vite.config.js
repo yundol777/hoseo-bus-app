@@ -19,6 +19,7 @@ export default defineConfig({
         "icons/icon-192x192.png",
         "icons/icon-512x512.png",
         "icons/apple-touch-icon.png",
+        "icons/splash-160x160.png",
         "manifest.json",
       ],
       manifest: {
@@ -31,29 +32,35 @@ export default defineConfig({
         display: "standalone",
         icons: [
           {
-            src: "icons/icon-192x192.png",
+            src: "/hoseo-bus-app/icons/icon-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "icons/icon-512x512.png",
+            src: "/hoseo-bus-app/icons/icon-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "icons/apple-touch-icon.png",
+            src: "/hoseo-bus-app/icons/apple-touch-icon.png",
             sizes: "180x180",
             type: "image/png",
           },
           {
-            src: "icons/icon-192x192.png",
+            src: "/hoseo-bus-app/icons/icon-192x192.png",
             sizes: "144x144",
             type: "image/png",
           },
           {
-            src: "icons/favicon-32x32.png",
+            src: "/hoseo-bus-app/icons/favicon-32x32.png",
             sizes: "96x96",
             type: "image/png",
+          },
+          {
+            src: "/hoseo-bus-app/icons/splash-160x160.png",
+            sizes: "160x160",
+            type: "image/png",
+            purpose: "any maskable",
           },
         ],
       },
