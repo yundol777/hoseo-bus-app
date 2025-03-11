@@ -19,7 +19,6 @@ export default defineConfig({
         "icons/icon-192x192.png",
         "icons/icon-512x512.png",
         "icons/apple-touch-icon.png",
-        "icons/splash-160x160.png",
         "manifest.json",
       ],
       manifest: {
@@ -55,12 +54,6 @@ export default defineConfig({
             src: "/hoseo-bus-app/icons/favicon-32x32.png",
             sizes: "96x96",
             type: "image/png",
-          },
-          {
-            src: "/hoseo-bus-app/icons/splash-160x160.png",
-            sizes: "160x160",
-            type: "image/png",
-            purpose: "any maskable",
           },
         ],
       },
