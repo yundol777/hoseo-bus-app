@@ -2,7 +2,6 @@ import styled, { useTheme } from "styled-components";
 import Header from "../components/Header";
 import { Link, useNavigate } from "react-router-dom";
 import shuttle from "../assets/images/shuttle.png";
-import shuttle_asan from "../assets/images/shuttle_asan.png";
 import shuttle_cheonan from "../assets/images/shuttle_cheonan.png";
 import shuttle_ktx from "../assets/images/shuttle_ktx.png";
 import shuttle_onyang from "../assets/images/shuttle_onyang.png";
@@ -84,7 +83,6 @@ const Bus = styled.span.withConfig({
         : "#A51622";
     }
 
-    if (props.busName === "셔틀(아산)") return "#6782EA";
     if (props.busName === "셔틀(KTX)") return "#6782EA";
     if (props.busName === "1000번") return "#6782EA";
     if (props.busName === "순환5번") return "#ECAB56";
@@ -133,11 +131,7 @@ const BusRoute = ({ setSelectedTheme }) => {
           <RouteContainer>
             <img src={shuttle} alt="" />
           </RouteContainer>
-          <Bus busName="셔틀(아산)">셔틀(아산)</Bus>
-          <RouteContainer>
-            <img src={shuttle_asan} alt="" />
-          </RouteContainer>
-          <Bus busName="셔틀(아산)">셔틀(KTX)</Bus>
+          <Bus busName="셔틀(KTX)">셔틀(KTX)</Bus>
           <RouteContainer>
             <img src={shuttle_ktx} alt="" />
           </RouteContainer>
