@@ -5,8 +5,13 @@ import { timeState } from "../recoil/timeState";
 import { comingBuses } from "../assets/data/busData";
 
 const BoardContainer = styled.div`
+  flex: 1;
   box-sizing: border-box;
   margin: 30px 24px;
+
+  @media (min-width: 1440px) {
+    margin: 30px 0;
+  }
 `;
 
 const DateContainer = styled.div`
@@ -18,12 +23,24 @@ const DateContainer = styled.div`
   > .date {
     font-weight: 900;
     color: #7f7f7f;
+
+    // 1440px 이상 화면 대응
+    @media (min-width: 1440px) {
+      color: #a8a8a8;
+      font-size: 24px;
+    }
   }
 
   > .time {
     font-weight: 500;
     font-size: 14px;
     color: #a8a8a8;
+
+    // 1440px 이상 화면 대응
+    @media (min-width: 1440px) {
+      font-weight: 900;
+      font-size: 24px;
+    }
   }
 `;
 
@@ -31,7 +48,7 @@ const BoardMain = styled.div`
   background-color: white;
   position: relative;
   margin-top: 8px;
-  height: 100%;
+  height: auto;
   min-height: 160px;
   border-radius: 10px;
   border: 2px solid #cccccc;
@@ -41,19 +58,29 @@ const BoardMain = styled.div`
   flex-direction: column;
   justify-content: space-between;
   color: #7f7f7f;
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    border-width: 5px;
+    min-height: 308px;
+  }
 `;
 
 const BusPrint = styled.div`
-  padding: 16px 24px;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 32px;
 
   .bus {
     display: flex;
     justify-content: space-between;
     font-weight: 900;
+
+    // 1440px 이상 화면 대응
+    @media (min-width: 1440px) {
+      font-size: 32px;
+    }
   }
 `;
 
@@ -69,6 +96,14 @@ const ShuttleBusPrint = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
+
+  padding: 16px;
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    padding: 24px;
+    gap: 12px;
+  }
 `;
 
 const CityBusPrint = styled.div`
@@ -76,13 +111,21 @@ const CityBusPrint = styled.div`
   flex-direction: column;
   gap: 8px;
   width: 100%;
+
+  padding: 16px;
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    padding: 24px;
+    gap: 12px;
+  }
 `;
 
 const Highlight = styled.div`
   width: calc(100% + 4px);
   margin-left: -2px;
   margin-bottom: -2px;
-  padding-left: 26px;
+  padding-left: 16px;
 
   height: 40px;
   border: 3px solid ${(props) => props.theme.primary};
@@ -93,6 +136,30 @@ const Highlight = styled.div`
   align-items: center;
   font-weight: 900;
   color: #000000;
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    width: calc(100% + 10px);
+    height: 72px;
+    margin-left: -5px;
+    margin-bottom: -5px;
+    padding-left: 24px;
+    border-width: 5px;
+
+    font-size: 32px;
+  }
+`;
+
+const LinePrint = styled.div`
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 2px;
+  background-color: ${(props) => props.theme.primary};
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    width: 5px;
+  }
 `;
 
 const Board = () => {
@@ -159,6 +226,7 @@ const Board = () => {
                 </div>
               ))}
           </ShuttleBusPrint>
+          <LinePrint />
           <CityBusPrint>
             {busData
               .filter((bus) => bus.type !== "셔틀버스")
