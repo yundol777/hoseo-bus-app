@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import styled, { useTheme } from "styled-components";
 import { timeState } from "../recoil/timeState";
 import { comingBuses } from "../assets/data/busData";
+import useIsLargeScreen from "../hooks/useIsLargeScreen";
 
 const BoardContainer = styled.div`
   flex: 1;
@@ -47,7 +48,7 @@ const DateContainer = styled.div`
 const BoardMain = styled.div`
   background-color: white;
   position: relative;
-  margin-top: 8px;
+  margin: 8px 0;
   height: auto;
   min-height: 160px;
   border-radius: 10px;
@@ -162,11 +163,21 @@ const LinePrint = styled.div`
   }
 `;
 
+const BusContactInfo = styled.div`
+  > p {
+    font-size: 24px;
+    font-weight: 900;
+    color: #a8a8a8;
+  }
+`;
+
 const Board = () => {
   const theme = useTheme();
   const [time, setTime] = useState(new Date());
   const [minute, setMinute] = useRecoilState(timeState);
   const [busData, setBusData] = useState([]);
+
+  const isLargeScreen = useIsLargeScreen();
 
   // 요일에 따른 타입 결정
   const getDayType = (day) => {
@@ -249,6 +260,11 @@ const Board = () => {
           </p>
         </Highlight>
       </BoardMain>
+      {isLargeScreen && (
+        <BusContactInfo>
+          <p>버스 관련 문의 : 000-0000-0000</p>
+        </BusContactInfo>
+      )}
     </BoardContainer>
   );
 };
