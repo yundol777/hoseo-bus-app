@@ -11,6 +11,11 @@ const HeaderContainer = styled.div`
   border-bottom-right-radius: 40px;
 
   padding: 26px 24px;
+
+  // 1440px 이상 화면 대응
+  @media (min-width: 1440px) {
+    height: 11vh;
+  }
 `;
 
 const HeaderLogo = styled.div`
@@ -38,6 +43,11 @@ const LocalChoice = styled.div`
     font-family: "Noto Sans KR", sans-serif;
     font-weight: 500;
     white-space: nowrap;
+
+    // 1440px 이상 화면 대응
+    @media (min-width: 1440px) {
+      font-size: 16px;
+    }
   }
 
   > select {
