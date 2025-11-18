@@ -4,6 +4,7 @@ import Board from "../components/Board";
 import TimeTable from "../components/TimeTable";
 import useIsLargeScreen from "../hooks/useIsLargeScreen";
 import QRGuide from "../components/QRGuide";
+import Footer from "../components/Footer";
 
 const MainContainer = styled.div`
   min-height: 100vh;
@@ -34,6 +35,7 @@ const Main = ({ setSelectedTheme }) => {
           <Board />
           <QRGuide />
         </BoardContainer>
+        <Footer />
       </MainContainer>
     );
   }
