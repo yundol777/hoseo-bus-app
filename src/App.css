@@ -146,6 +146,11 @@ textarea:active {
     width: 100vw;
   }
 }
+@media (min-width: 1440px) {
+  #root {
+    width: 100vw;
+  }
+}
 
 #root {
   box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
